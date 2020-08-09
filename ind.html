@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>CLOVE | Home</title>
+
+
+	<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Kalam:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+	<link rel="stylesheet" href="de/c/w.css"/>
+	<link rel="stylesheet" href="de/c/uk.css"/>
+	<link rel="stylesheet" href="de/c/bs.css"/>
+	<link rel="stylesheet" href="de/c/mm.css"/>
+	<link rel="stylesheet" href="de/c/flk.css"/>
+
+	<style>
+		:root{
+			--mm-listitem-size: 35px;
+			--mm-navbar-size: 40px;
+		}
+		.mm-navbar__searchfield {
+			-webkit-box-flex: 1;
+			-ms-flex-positive: 1;
+			flex-grow: 1;
+			padding: 0;
+		}
+		html,body{
+			margin: 0; padding: 0;
+			box-sizing: border-box;
+			color: #ddd;
+		}
+		#BG{
+			background: #222;
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			position: fixed;
+			top: 0; left: 0;
+			z-index: 2;
+		}
+		#navRC{
+			position: fixed;
+			bottom: -92vh;
+			left: 0;
+			width: 1%;
+			height: 192vh;
+			background: transparent;
+			z-index: 9991;/*
+			box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+			overflow: visible;
+		}
+		#navRM{
+			width: 10000%;
+			height: 100vh;
+			display: inline-flex;
+			flex-direction: column;/*
+			bottom: -92vh;*/
+			background: linear-gradient(to bottom,#2224 0%, #222f 5%, #222f 8%,  #2224 50%, #222f 100%);
+		}
+		#navRB{
+			position: relative;
+			display: inline-flex;
+			height: 92vh;
+			width: 80%;
+			overflow: hidden;
+		}
+		#navRH{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: stretch;
+			height: 8vh;
+			width: 100%;/*
+			box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+		}
+		.navBtn{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-grow: 1;
+			height: 100%;
+			color: #ddd;
+			cursor: pointer;
+		}
+		.navBtn:hover, .navBtn:focus{
+			color: #cf0;
+			background: #0002;
+		}
+		#navRW{
+			display: flex;
+			flex-direction: row;
+		}
+		.navH{
+			width: 10%;
+		}
+		#main{
+			position: absolute;
+			top:0;left: 0;
+			z-index: 5;
+			width: 100%;
+		}
+
+		.noWidth{
+	width: 2px;
+}
+.fullWidth{
+	width: 100%;
+}
+.noscroll{
+	overflow-y: hidden;
+}
+.navBot{
+	bottom: -92vh;
+}
+.navMid{
+	/*bottom:0%;*
+	bottom: -15%;*/
+	/*bottom: -27%;*/
+	bottom: -42vh;
+	/*bottom: -57%;*/
+	/*bottom: -77%;*/
+	/*bottom: -92%*/
+}
+.navTop{
+	bottom: 0vh;
+}
+
+.nbGray{
+	box-shadow: inset rgba(221, 221, 221, 0.733) 0 2px, inset rgba(221, 221, 221, 0.4) 0 -2px;
+}
+.nbGreen{
+	box-shadow: inset rgba(204, 255, 0, 0.733) 0 4px, inset rgba(221, 221, 221, 0.4) 0 -2px;
+}
+.nbAqua{
+	box-shadow: inset rgba(0, 255, 255, 0.733) 0 4px, inset rgba(221, 221, 221, 0.4) 0 -2px;
+}
+
+#pagePillsCont, #navPillsCont{
+	height: 5vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: sticky;
+	top: calc(4vh - 2px);
+	z-index: 905;
+	background: #222;
+	color: #bbb;/*
+	border-bottom: solid 2px rgba(221, 221, 221, 0.867);*/
+	box-shadow: #ddd 0 2px 0;
+}
+.pillContBG {
+	position:absolute;
+	top:0;
+	z-index: 1;
+	width: 5vw;
+	pointer-events: none;
+	height:100%;
+}
+.pillContBGlt {
+	left: 0;
+	background:linear-gradient(90deg, #222 0%, #222 10%, transparent);
+}
+.pillContBGrt {
+	right: 0;
+	background:linear-gradient(90deg, transparent 0%, #222 90%, #222);
+}
+.pagePill, .navPill{
+	height: 5vh;
+	padding: 0 1em;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	white-space: nowrap;
+	color: #aaa;
+}
+.pagePill.is-selected, .navPill.is-selected{
+	background: #444;
+	color: #ddd;
+}
+.pagePill.is-nav-selected, .navPill.is-nav-selected{
+	box-shadow: none;
+	color: #222;
+	background: #ddd;
+}
+
+#pageMatterCont{
+	z-index: 999;
+}
+.pageMatter{
+	width: 100%;
+	padding: 2vh 2vw;
+	min-height: 91vh;/*
+	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+}
+.pageCard{/*
+	box-shadow: inset red 2px 2px, inset red -2px -2px;*/
+	padding: 2vh 2vw;
+	margin-top: 2vh;
+	border-radius: 0.5em;
+	background: rgba(0, 0, 0, 0.533);
+	border: solid 2px rgba(255, 255, 255, 0.667);
+}
+.pageMatEnd{
+	text-align: center;
+	height: 25vh;
+	background: transparent;
+	border: none;
+	margin-top: 1em;
+}
+.pageMatter > .pageCard:first-child{
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+}
+#introCont{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 50vh;
+	background: #ddd;
+	color: #222;
+}
+#intro{
+	display: flex;
+	width: 100%;
+	padding: 1em 10%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 904;
+	position: sticky;
+	top: -1px;
+	text-align: center;
+}
+#intro > .head{
+	font-size: x-large;
+}
+.divLine{
+	height: 2px; width: 100%;
+	background: #222;
+}
+#intro > .content{
+	color: #555;
+}
+#introFix{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	max-height: 4vh;
+	height: 4vh;
+	font-size: 2vh;
+	background: #ddd;
+	color: #222;
+	position: sticky;
+	top: -2px;
+	z-index: 910;
+}
+/***********************	Question Start	***********************/
+
+.qrkQuesNo{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background: #ddd;
+	color: #222;
+	border-radius: 0.5em 0.5em 0 0;
+}
+.qrkQuesContent{
+	color: #ddd;
+	font-size: 1.2em;
+}
+.qrkQuesContent > .tglBtn{
+	width: 100%
+}
+.qrkQuesAns{
+	color: aqua;
+}
+
+/***********************	Question End	***********************/
+
+	@supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) or (-moz-backdrop-filter: blur(10px)){
+		#navRM {
+			background: linear-gradient(to bottom,#2224 0%, #222f 5%, #222f 8%,  #2224 50%, #222f 100%);
+			backdrop-filter: saturate(180%) blur(5px);
+		}
+	}
+	</style>
+</head>
+<body uk-parallax="bgy: -600">
+	<div id="main">
+	<div id="introCont">
+		<div id="intro" uk-parallax="opacity: 1,0;">
+			<div class="head">
+				Intro
+			</div>
+			<div class="divLine"></div>
+			<div class="content">
+				This describes the above heading in detail.
+			</div>
+		</div>
+	</div>
+	<div id="introFix" uk-parallax="color: #ddd,#222; viewport:0.6">Intro&nbsp;<span id="pageSlideCountIndi"></span></div>
+	<div id="pagePillsCont">
+		<div id="pagePillFlick" class="pagePillFlick" data-flickity='{ "cellSelector": ".pagePill", "asNavFor": ".pageMatterFlick", "contain": false, "pageDots": false, "prevNextButtons": false, "freeScroll": true, "cellAlign": "center" }'>
+			<div class="pillContBG pillContBGlt"></div>
+			<div class="pillContBG pillContBGrt"></div>
+			<div class="pagePill">Pill 01</div>
+			<div class="pagePill">Pill 02</div>
+			<div class="pagePill">Pill 03</div>
+			<div class="pagePill">Pill 04</div>
+			<div class="pagePill">Pill 05</div>
+			<div class="pagePill">Pill 06</div>
+			<div class="pagePill">Pill 07</div>
+			<div class="pagePill">Pill 08</div>
+			<div class="pagePill">Pill 09</div>
+			<div class="pagePill">Pill 10</div>
+		</div>
+	</div>
+	<div id="pageMatterCont">
+		<div id="pageMatterFlick" class="pageMatterFlick">
+			<div class="pageMatter">
+				<div class="pageCard">
+					Matter 01
+				</div>
+				<div class="pageCard">
+					<div class="qrkQuesNo">
+						<h2>Question No: 1</h2>
+						<div>H</div>
+					</div>
+					<div class="qrkQuesContent">
+						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum recusandae reiciendis perspiciatis quia quisquam maiores, facere quas repellendus ut quis voluptatem a quod ipsa doloribus dolore blanditiis quam nobis sequi?
+						<button class="tglBtn uk-button w3-grey" type="button" uk-toggle="target: .tglA01">Toggle</button>
+						<div class="tglA01">
+							Answer will be displayed here.
+						</div>
+						<div class="tglA01" hidden>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam vel aliquam autem, numquam ad deserunt amet quidem labore. Officiis sit qui asperiores harum facere numquam molestias atque soluta aperiam quasi.</p>
+							<p>Natus minus blanditiis praesentium, recusandae perspiciatis eum iste laudantium consequuntur alias rerum similique quos, corporis dolorem unde nesciunt nulla architecto illo cupiditate tempora veniam. Ipsam doloribus illum corporis eos amet.</p>
+							<p>Mollitia repudiandae laudantium iure quam porro repellat consectetur nesciunt animi dicta officiis. Praesentium quia natus veritatis vitae repudiandae sed asperiores porro recusandae, quas id, nesciunt earum. Accusantium provident iste ipsa.</p>
+							<p>Nam dolor doloremque voluptatem laudantium consequatur nihil? Deleniti accusamus assumenda debitis alias odio? Numquam veritatis fugit perferendis esse explicabo, veniam saepe dolorem. Esse veritatis consequatur consectetur magnam dolore vitae ab.</p>
+							<p>Aut quos culpa quaerat, pariatur assumenda laborum. Officiis delectus ut pariatur expedita laboriosam laudantium nam odio soluta voluptatum odit sunt, alias debitis magnam doloribus, ullam numquam cum nobis nesciunt consequuntur.</p>
+							<p>Sed placeat veritatis sit itaque. Sapiente facere reprehenderit veniam, quae, porro mollitia aliquid deleniti, in quidem quisquam deserunt alias incidunt obcaecati. Itaque tenetur pariatur nostrum beatae molestiae sapiente ipsum blanditiis.</p>
+							<p>Incidunt cumque illum inventore earum rem labore fuga optio, qui cupiditate aliquam tempora, exercitationem repellendus iusto. Facilis, cum quas id quam nisi eaque voluptatem temporibus, minima tempora quod, reprehenderit qui?</p>
+							<p>Laudantium eligendi fugiat esse aliquid quo! Exercitationem, blanditiis facere! Eos quas optio natus voluptates vel quo quis nisi. Iusto nihil nobis enim saepe placeat quasi quas quis eum voluptas atque.</p>
+						</div>
+					</div>
+				</div>
+				<div class="pageCard">
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum architecto fugiat repellendus tempore repellat rerum molestias sint, earum sunt harum non eos obcaecati in accusamus pariatur velit quam ducimus ex.</p>
+					<p>Fugiat sequi doloribus amet repellendus omnis corporis itaque in maxime odit. Laudantium doloremque, libero totam, ex tenetur cupiditate mollitia ipsam quo earum nam molestias atque! Optio doloremque dolore quam maxime.</p>
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum architecto fugiat repellendus tempore repellat rerum molestias sint, earum sunt harum non eos obcaecati in accusamus pariatur velit quam ducimus ex.</p>
+					<p>Fugiat sequi doloribus amet repellendus omnis corporis itaque in maxime odit. Laudantium doloremque, libero totam, ex tenetur cupiditate mollitia ipsam quo earum nam molestias atque! Optio doloremque dolore quam maxime.</p>
+				</div>
+				<div class="pageCard">
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id iste accusamus magnam ea, impedit error quis qui repellat, mollitia ad necessitatibus? Debitis quae dolor, error modi cum ullam fugit quos.</p>
+					<p>Non vel sint molestias perferendis, explicabo, nam quo a iste itaque illo molestiae beatae amet perspiciatis in neque, quod ut eius quae dolorem doloremque excepturi. Reiciendis, ex aliquid. Aliquid, ullam?</p>
+					<p>Quidem fuga placeat consectetur totam illum iste rem vero, nihil id vel voluptatibus non commodi deserunt voluptatum, dolor accusamus dignissimos dolore delectus ipsum voluptate praesentium natus nulla mollitia. Facere, similique.</p>
+					<p>Omnis accusamus commodi, impedit quibusdam sunt atque! Itaque eum blanditiis voluptatum numquam sunt alias consequatur ullam ratione quos. Assumenda nemo enim ipsum blanditiis aut neque illum nihil soluta laboriosam. Aperiam.</p>
+					<p>Eaque esse excepturi repudiandae eum aliquam ducimus libero ipsa quaerat quos quibusdam, beatae culpa dolor eveniet est ratione sunt unde commodi reprehenderit nesciunt quis. Nihil, dolor vitae. Reiciendis, saepe ab.</p>
+					<p>Deserunt provident veniam, reprehenderit tempore excepturi repellendus necessitatibus ducimus soluta praesentium quod id minima voluptatum consequuntur quidem laborum veritatis fugiat harum eaque hic similique sequi ea velit quasi? Facilis, autem.</p>
+					<p>Aspernatur, ex? Inventore, minima sunt itaque vitae aspernatur ea quisquam deleniti! Reiciendis tenetur ex quae nulla aperiam doloremque, commodi vitae, rem necessitatibus officia illum laborum similique earum molestias corporis maxime.</p>
+					<p>Assumenda magni blanditiis rem, fuga quidem pariatur suscipit expedita, quos, numquam facere voluptatum dignissimos quasi iure molestias ut ipsa vel sapiente. Laboriosam, hic vel quas quod dolor amet obcaecati reprehenderit?</p>
+				</div>
+				<div class="pageCard">
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto illum tenetur eveniet officiis id veritatis molestias necessitatibus sit possimus repellendus. Repudiandae amet quod molestias eaque voluptas recusandae maxime explicabo dolorem!</p>
+					<p>Debitis facilis quisquam tempore quis, fuga ipsam officiis? Nulla in asperiores blanditiis repellat. Officia dolorum, dignissimos corrupti accusamus tempore, distinctio, dolore error doloremque quam molestias obcaecati beatae saepe odio aperiam!</p>
+					<p>Sint mollitia distinctio quia earum? Nobis eos voluptas ipsa, eum, exercitationem eveniet et soluta voluptates amet sit modi commodi vitae. Recusandae impedit saepe iste molestiae quo cupiditate dolorum vitae ratione!</p>
+					<p>Nam, accusamus dolore quis vero, ab blanditiis sit aspernatur similique nisi doloribus alias tempore assumenda. Magni voluptate vel asperiores quos quidem, nostrum reprehenderit nemo inventore dolorem mollitia voluptates adipisci aspernatur!</p>
+					<p>Voluptatem sunt labore laborum repellendus iste, ex eos eligendi animi! Iure quibusdam perspiciatis eos odit repudiandae, perferendis illo fugiat cumque quia eligendi ducimus asperiores architecto quisquam rem in saepe veritatis!</p>
+					<p>Cumque quae odio repellat vitae dolorem quia aspernatur molestias numquam a, adipisci itaque ullam earum, impedit, expedita commodi! Quisquam, magni aspernatur? Alias, dignissimos. Iure necessitatibus, illum consequuntur provident blanditiis similique!</p>
+					<p>Totam quas, adipisci ipsam inventore facilis veniam velit dolorem incidunt, dolores ipsum nostrum odit. At odit unde nostrum consectetur quo. Architecto in iste distinctio doloribus numquam cum a, nobis explicabo.</p>
+					<p>Saepe odio provident autem repellendus? Architecto nisi ut praesentium cumque ducimus atque pariatur? Quo perferendis, magni hic, architecto a, debitis delectus provident quia rerum ea at distinctio autem eaque? Quos?</p>
+				</div>
+				<div class="pageCard">
+					<p>Animi at fugiat nostrum repellat blanditiis quaerat iste ea commodi, soluta minus ut sunt enim nisi explicabo et facere. Omnis id accusamus rerum odit velit ducimus eius alias quia quasi!</p>
+					<p>Quidem debitis earum dignissimos asperiores tempore. Provident aut a hic ullam suscipit! Quibusdam mollitia labore nobis, eius enim corporis officiis aut iste cumque? Laborum corporis, reprehenderit eveniet eius eum fugit.</p>
+					<p>Possimus aspernatur quo nobis, inventore magnam ex ipsum harum ipsam totam dolorum assumenda labore iusto maiores repudiandae quae nisi consequuntur quidem, animi iure! Aperiam nihil corrupti nemo laudantium veritatis suscipit.</p>
+					<p>Quasi architecto dolores odit rem accusantium velit ad facere eum officia totam sit numquam iste hic excepturi nostrum sed, atque optio fuga cum autem. Id placeat quisquam nihil enim in?</p>
+					<p>Quos vero beatae similique exercitationem quo sed officiis repellendus suscipit officia eos accusantium atque deserunt incidunt voluptatibus fugit ipsa, harum quis vitae sunt natus vel enim. Similique quod consequatur quia.</p>
+					<p>Ullam, aspernatur dolorum? Velit odio itaque adipisci saepe debitis cumque quo quia eveniet. Id ab quibusdam ipsa facilis alias perspiciatis odit aliquam, iste placeat magni sit, quos velit hic. Delectus.</p>
+					<p>Eveniet vero necessitatibus assumenda facere eos nam commodi obcaecati, molestias ipsum laudantium excepturi explicabo ea fugit quis maiores doloribus quo harum porro odio beatae? Temporibus rerum quibusdam veniam! Hic, tempora.</p>
+					<p>Voluptas, quasi numquam. Nesciunt explicabo saepe culpa accusantium consequuntur quaerat minus non quibusdam animi? Officiis veritatis porro tenetur eaque autem amet laborum quis omnis, earum temporibus in perspiciatis ex sunt.</p>
+				</div>
+				<div class="pageCard">
+					<p>Ullam non ea commodi dolores quibusdam dignissimos harum? Provident alias non, harum voluptates dicta, quod quibusdam ratione at asperiores soluta perspiciatis. Praesentium esse cupiditate dolorem quis ad maiores accusamus nobis.</p>
+					<p>Rerum facere nisi ducimus similique incidunt iste atque fugit enim vitae suscipit libero consequuntur laudantium, sapiente voluptate fugiat alias maiores reprehenderit asperiores ipsum facilis soluta minima, ipsam animi dolore? Illum?</p>
+					<p>Optio neque enim porro cum aspernatur delectus maiores reprehenderit accusamus nulla dolores temporibus molestiae accusantium voluptas error rerum, vitae eius officia placeat voluptatem aliquam! Quod nisi veniam aut temporibus nostrum?</p>
+					<p>Voluptates sint quae asperiores quos deleniti eveniet tenetur ipsam error magni at quaerat fuga, sunt harum facilis reprehenderit quas hic, natus accusamus obcaecati quasi repudiandae expedita eius vel iusto? Repellat?</p>
+					<p>Vel labore suscipit eligendi corporis a quia illo. Incidunt adipisci mollitia et nam voluptatum doloremque impedit facilis, harum maiores aliquam vel in rerum itaque ullam, commodi ex nesciunt pariatur! Velit!</p>
+					<p>Ex, totam. Praesentium veniam laborum quo quasi at itaque beatae repellat mollitia quos illum magnam est placeat distinctio, omnis amet dolor ad odit dignissimos eos. Nisi ullam vero corporis iste?</p>
+					<p>Saepe quaerat minus corrupti quia consequuntur alias odio. Explicabo quam dolorem nesciunt tempora, molestiae corporis amet quia. Obcaecati eveniet autem, ipsum possimus voluptate dolores dolorum enim molestias odio soluta veritatis.</p>
+					<p>Repellat minima fugit quam officia repellendus, nisi numquam, possimus officiis voluptatum ullam voluptas aliquid eius soluta aspernatur nihil accusamus dolor quis fugiat sunt accusantium? Magni cupiditate eius velit similique quas.</p>
+				</div>
+				<div class="pageCard">
+					<p>Maiores expedita eum eius accusantium necessitatibus odio iste hic, reprehenderit facilis quam sint repellat quas cumque officia quidem ipsam culpa? Ex ipsa veritatis aspernatur in quo odit, iure debitis esse!</p>
+					<p>Suscipit porro molestias ipsa? Officia, maxime incidunt accusantium omnis, sit nobis tenetur possimus velit voluptates, iste quas rem. Culpa dolorem numquam, itaque id aperiam quo ab nulla? Optio, repellat earum!</p>
+					<p>Porro sequi culpa accusantium dolores, delectus totam illo quia numquam recusandae voluptates excepturi non voluptas fugiat asperiores facere enim quos ipsam, corrupti neque deserunt dolore cumque. Facilis dolore placeat quo?</p>
+					<p>Earum maiores voluptatem optio beatae facilis quas nobis quisquam, doloribus molestiae voluptatibus amet veritatis neque sapiente odio laborum porro atque laboriosam ex eaque! Nemo id temporibus eos aperiam velit veritatis.</p>
+					<p>Accusantium aut minima cupiditate earum vitae fuga quam quis libero, qui error eos animi asperiores quae molestiae autem voluptatibus, pariatur praesentium officia tenetur, officiis nobis quas dignissimos rem! Quis, natus?</p>
+					<p>Veniam possimus quasi tempore dicta tenetur accusantium, sint eos asperiores consectetur. Excepturi iste obcaecati eos est totam, illo modi, consequuntur culpa mollitia voluptatem velit accusantium. Provident voluptatibus minus qui maiores.</p>
+					<p>Eligendi rem blanditiis quasi repellendus eaque explicabo placeat praesentium illo ullam error sit quis, odit nam aperiam at consequuntur obcaecati consectetur ut officia minus a optio maxime. Praesentium, totam adipisci.</p>
+					<p>Quis neque minima, recusandae, tenetur delectus dolor doloribus id porro qui aut veritatis eum. Tenetur ea aliquid, earum vitae aliquam optio aperiam voluptatum id a doloremque quae? Magnam, ratione nisi.</p>
+				</div>
+				<div class="pageCard">
+					<p>Quas provident sapiente error, alias itaque enim libero necessitatibus vel hic, harum ab inventore molestiae nihil aliquid odit cum velit in quos deleniti omnis excepturi beatae. Officiis odio recusandae iure?</p>
+					<p>Corporis dignissimos eum unde magni est tenetur modi eligendi doloremque et quia repellat velit, nobis, odit eveniet explicabo reprehenderit! Voluptatem vero nobis officiis ipsam sed, maiores labore itaque numquam totam!</p>
+					<p>Modi soluta quas similique natus? Sequi veritatis doloremque maxime voluptate commodi eum repudiandae saepe natus possimus obcaecati laborum officia tempora iste, neque esse minus vero veniam impedit modi? Culpa, est?</p>
+					<p>Saepe voluptatibus odio voluptatum, quos totam hic quam esse, consectetur quis modi at ipsum eum aperiam officiis ut aliquid ex sequi porro enim non nulla iure laudantium pariatur? Numquam, debitis.</p>
+					<p>Neque magni unde excepturi dolores nobis autem, dolorem iusto accusantium ullam quas odit soluta laudantium voluptatem quia deserunt? Vero ea sint eveniet consequuntur explicabo veritatis sit repellat exercitationem recusandae maiores.</p>
+					<p>Eaque repellat quis expedita suscipit cupiditate officia quidem voluptate esse vero, asperiores, rerum earum? Iure vel voluptas, veniam deserunt vero, facilis dolore illum voluptatibus, consequuntur modi odit ut aliquam iste.</p>
+					<p>Quos expedita ipsa et id recusandae fugiat voluptates amet non optio veritatis! Quia cupiditate, ullam possimus est atque animi fugiat sunt saepe. Autem laborum totam praesentium sapiente numquam nisi laboriosam!</p>
+					<p>Necessitatibus, commodi culpa! Magnam illum doloremque excepturi dolorem! Veritatis rem fugiat non corrupti aperiam sint aliquam mollitia error provident officiis, asperiores maxime! Cum nam quis omnis aspernatur sunt obcaecati aliquid!</p>
+				</div>
+				<div class="pageCard">Row 5</div>
+				<div class="pageCard">Row 6</div>
+				<div class="pageCard">Row 7</div>
+				<div class="pageCard">Row 8</div>
+				<div class="pageCard">Row 9</div>
+				<div class="pageCard">
+					<div class="addPageRow">Add Row</div>
+					<div class="remPageRow">Remove Row</div>
+				</div>
+
+			</div>
+			<div class="pageMatter">Matter 02
+				<div class="pageCard">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti, error a totam eveniet sunt cum doloremque et hic atque dolore, officia provident laboriosam quidem maiores voluptates. Consequatur eius expedita aliquid.</p>
+					<p>Et, rerum! Repellendus, molestias quidem illo nulla quae cupiditate deserunt laborum eveniet maiores atque neque nostrum reiciendis facilis sed repellat voluptate voluptatem iure obcaecati accusamus earum aperiam minus numquam necessitatibus?</p>
+					<p>Nemo cumque reiciendis libero commodi cupiditate itaque earum at corporis quam vitae, ad illo eligendi esse rem facilis repellendus asperiores vel maiores, error voluptatem quibusdam possimus. Dolore reprehenderit illo eaque!</p>
+					<p>Veniam pariatur reiciendis laudantium earum, ipsum illo expedita alias laborum adipisci vero rem, tempora eum nostrum a consequatur ex fugit. Quibusdam atque ab odio quidem, tempore ipsam itaque id eos?</p>
+					<p>Sapiente molestiae corporis quam voluptatem accusantium temporibus a quos cum aperiam earum nisi corrupti optio quod distinctio vel explicabo voluptate, culpa ipsa officiis delectus facere! Ad ipsa laborum amet distinctio.</p>
+					<p>Nam aliquid rem nulla quibusdam sint ipsum autem exercitationem pariatur architecto, eligendi unde fugiat impedit quo, animi similique facilis consequatur incidunt libero excepturi ex quod blanditiis. Iusto itaque vel debitis.</p>
+					<p>Vero minus distinctio, at autem fugiat quae necessitatibus fugit nobis cumque provident nesciunt tenetur ipsum deleniti doloremque? Assumenda, neque temporibus deserunt perferendis porro error maxime voluptates! Voluptatum aut consequuntur itaque?</p>
+					<p>Necessitatibus porro accusantium ullam tempore aperiam quod doloribus quia et, voluptatem eos qui dignissimos molestias saepe praesentium maxime officia. Ad incidunt impedit animi. Non, dicta repellat deserunt provident libero ipsum?</p>
+					<p>Laboriosam error cupiditate accusantium illum nostrum rem eum dolore voluptatem recusandae, magni placeat commodi adipisci dolor dolorem! Dolorem velit numquam mollitia! Quod numquam libero harum, saepe eum odit accusamus nihil?</p>
+					<p>Natus ducimus modi officiis magni cum reiciendis, deleniti eum. Unde ea repudiandae perspiciatis delectus tempora. Ipsa, nobis ad? Numquam odit id voluptas ea eum doloremque cumque at. Reiciendis, et quaerat.</p>
+					<p>Ipsa accusantium velit esse repellendus alias consequatur amet, aliquam dolores optio! Quia, labore rerum reprehenderit eaque explicabo, suscipit inventore nostrum, amet laboriosam nam dignissimos libero. Ut eveniet sapiente adipisci hic.</p>
+					<p>Esse iure amet facere repudiandae deleniti, iusto delectus, eveniet nihil, maxime soluta rerum autem laudantium ipsum expedita culpa numquam quisquam optio! Molestiae soluta sit provident reiciendis quo illo dolores qui?</p>
+					<p>Facere quisquam quis autem odio labore nemo ab, quasi libero pariatur consectetur nisi ipsa eligendi, ea sit! Dolorem doloribus fugiat, optio cumque excepturi, repudiandae porro incidunt ratione, sequi reprehenderit aspernatur.</p>
+					<p>Nisi quidem veritatis itaque, assumenda enim vel ducimus repudiandae deserunt repellat inventore reiciendis odio, a in quisquam accusamus blanditiis. Sit, eaque! Iusto veniam saepe libero quo praesentium assumenda, architecto sunt?</p>
+					<p>Ab a dolore beatae neque at magni possimus? Ipsam modi impedit molestias aliquid architecto accusantium facilis et esse eligendi voluptate deserunt, consequuntur eum libero a tempora recusandae error. Perspiciatis, accusantium?</p>
+				</div>
+				<div class="pageCard">
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam ab praesentium perspiciatis, quae enim quaerat debitis ad voluptate, perferendis odit officia possimus iusto illo cupiditate nihil, labore veritatis expedita dolore!</p>
+					<p>Beatae labore sit dicta. Delectus iste et voluptatibus asperiores nulla, illo minima exercitationem necessitatibus aspernatur. Asperiores soluta accusamus ipsum, provident incidunt veniam sunt! Nihil a sed, quo rem recusandae iure.</p>
+					<p>Illo excepturi culpa veritatis cupiditate nesciunt fuga eum quod corporis atque. Non reprehenderit exercitationem aliquid. Veritatis numquam, ullam eos aliquid adipisci accusamus, exercitationem, minus atque pariatur iusto sequi unde quasi.</p>
+					<p>Excepturi, ipsa dicta iure et nemo culpa debitis qui cumque, suscipit voluptas omnis tempore ipsum a incidunt nam consectetur praesentium, doloremque cupiditate illo nisi aliquid rem! Doloribus blanditiis obcaecati optio.</p>
+					<p>Iure culpa repudiandae ratione excepturi autem asperiores ullam sed fugiat sequi aperiam. Assumenda saepe repellendus odio consequuntur laboriosam sunt, eos harum perspiciatis ratione, necessitatibus rem consequatur facilis corrupti! Quae, culpa?</p>
+				</div>
+				<div class="pageCard">
+					<p>Magnam laboriosam cum hic veritatis placeat culpa maiores non ab unde odit? Aliquid expedita doloremque accusamus quis deserunt sed? Voluptates atque velit aliquam enim totam eaque animi perferendis sit nostrum.</p>
+					<p>Porro cumque quam neque numquam a ut harum placeat dolores magnam, natus error, accusantium aperiam ratione doloribus illum sunt rerum. Ipsam voluptates odio aliquid obcaecati doloribus nisi iusto expedita. Enim?</p>
+					<p>Ab tempore quasi accusantium dolores quam esse, dolorem excepturi sit enim iusto voluptas ad tempora accusamus eius quia incidunt tenetur placeat. Optio unde ex architecto sequi iste quo voluptatibus rem!</p>
+					<p>Excepturi enim tempore aliquam molestias possimus sint necessitatibus quo? Nulla, perspiciatis? Facilis repellendus dignissimos autem earum, eveniet vero hic ipsa soluta recusandae maiores sint modi aliquam incidunt tempore esse ea.</p>
+					<p>Velit voluptatibus aspernatur reiciendis accusantium, incidunt non aliquid fugiat sunt harum corporis iusto maxime nemo ipsam sapiente odit illum esse iste laudantium totam dignissimos corrupti doloremque id accusamus? Doloribus, perspiciatis.</p>
+				</div>
+				<div class="pageCard">
+					<p>Ullam rem unde impedit inventore cupiditate! Dolorem consequatur sint architecto atque! Incidunt officiis praesentium facere ea ab sint asperiores sed esse distinctio, ratione quod voluptates ipsa quos! Laudantium, ex repudiandae?</p>
+					<p>At adipisci quisquam nobis minus fugiat eos autem rem deleniti quia incidunt! Voluptate dicta officiis consequuntur nostrum odio dignissimos atque possimus voluptatum. Assumenda, qui commodi excepturi quam doloribus ex blanditiis!</p>
+					<p>Fuga id velit deleniti magni nostrum odit, officiis cum quo hic veritatis mollitia excepturi repellat inventore eius corrupti eaque dicta laboriosam facere explicabo provident molestias repellendus aut quibusdam ipsa. Vel.</p>
+					<p>Debitis itaque eum, asperiores culpa, eos commodi dicta neque aut, repellendus ipsa modi soluta animi nesciunt quaerat magnam consequatur! Velit beatae nulla laudantium vel. Adipisci nemo quasi veniam vel nisi!</p>
+					<p>Officiis minima atque a, earum accusamus veniam molestias laborum, mollitia officia dolore natus ab praesentium ea explicabo magni repudiandae ducimus. Consequuntur vitae nostrum dolorum quibusdam reprehenderit cumque obcaecati id corporis?</p>
+				</div>
+				<div class="pageCard">
+					<p>Veniam, eos perspiciatis dignissimos animi consequatur eveniet tempore? Eaque atque blanditiis quod aut. Saepe, quibusdam beatae, ipsum consectetur similique neque cum natus distinctio ipsam temporibus harum? Harum in sit minima?</p>
+					<p>Laborum a illo mollitia eveniet amet rerum, atque voluptatum ut ducimus numquam, pariatur nam sit eum repellat consectetur. Minima harum ullam, voluptatibus inventore omnis id impedit in? Velit, ipsa maiores!</p>
+					<p>Amet quidem nesciunt officiis, perspiciatis omnis quaerat corrupti dolore eius totam reiciendis illum tempora nostrum, deserunt aliquid corporis eum? Nemo quasi distinctio vel iste vero ducimus laborum voluptatibus eaque esse!</p>
+					<p>Quod sequi eos ipsa praesentium, architecto ipsum dolores ullam alias accusantium veritatis voluptas quam culpa dolorum rem! Praesentium rem, quis, deleniti, quas veritatis sed est fugit porro reprehenderit voluptatem blanditiis.</p>
+					<p>Corporis aspernatur quidem, atque ad fugiat, ipsa animi accusantium provident in minus, nesciunt cupiditate optio? Facilis magnam quo necessitatibus! Quod quae sapiente perferendis vel. Explicabo quod eos rerum ipsam inventore!</p>
+				</div>
+				<div class="pageCard">
+					<p>Perferendis iste, dolor magnam aspernatur ad quam maxime itaque natus ducimus quae ab asperiores quibusdam fuga, rem nobis saepe labore ut dicta ipsam, quasi animi molestiae nulla. Illum, placeat soluta.</p>
+					<p>Culpa, voluptate quia voluptatibus repudiandae perspiciatis non! Ipsum repudiandae, qui maxime ex distinctio quis, illum fugiat, nesciunt eligendi explicabo commodi sapiente quas quia atque eum magni eos voluptate in. Architecto!</p>
+					<p>Laudantium autem aliquam suscipit dicta dolorum culpa qui ea, quae illo beatae quod illum consequuntur reiciendis nam, repudiandae asperiores reprehenderit iure harum? Quisquam possimus minima voluptate quos eligendi perspiciatis totam.</p>
+					<p>Ipsum tempore ad eos consequatur fugiat ipsa vel quos earum, doloremque dolorum. Totam est doloribus saepe reprehenderit, debitis placeat quae accusamus iure sint, blanditiis possimus, tempore illum incidunt itaque repellat.</p>
+					<p>Facere, assumenda harum. Sit maiores obcaecati soluta quibusdam quo neque, optio necessitatibus perferendis nostrum quas laudantium velit facere quasi officiis, officia veniam placeat explicabo ad quos eligendi. Similique, quis ipsa.</p>
+				</div>
+				<div class="pageCard">
+					<p>Eveniet vero magnam eligendi ut. Maxime laborum tempora qui corporis, repellendus molestias totam repellat. Necessitatibus beatae ab voluptatem, asperiores nihil facilis, unde voluptate nisi dolore doloribus omnis facere veniam fugit?</p>
+					<p>Ut, fuga laborum? Accusamus itaque possimus, mollitia porro quas repellendus, illo maxime necessitatibus ad, eius quibusdam atque velit unde. Rerum quidem voluptatum iste assumenda quasi sequi possimus ad blanditiis cupiditate?</p>
+					<p>Optio praesentium corrupti illo eligendi iusto omnis labore! Commodi quisquam, quae ea sunt natus ut corrupti fuga. Optio, architecto! Sed sint magni inventore iste quaerat dicta, voluptates soluta assumenda cupiditate?</p>
+					<p>Corporis aliquid quisquam exercitationem tempore vitae minima, beatae, possimus officiis eius, sapiente provident maiores at sequi dolores facilis recusandae velit fuga. Corrupti saepe atque accusantium quasi aliquam quidem repellat eum?</p>
+					<p>Error explicabo perferendis maiores quasi aut amet perspiciatis distinctio quod laborum deleniti facilis animi ex cum praesentium repellat ipsa possimus nam at, harum rerum. Ducimus sunt voluptatem veritatis fugit cum!</p>
+				</div>
+				<div class="pageCard">
+					<p>Atque vel in consectetur dolorum? Assumenda aspernatur quas voluptates necessitatibus aut dolorum ipsum nostrum debitis et eligendi, expedita nulla perspiciatis recusandae, unde vel! Eum, ipsam cum ex deserunt provident sunt!</p>
+					<p>Ipsam debitis qui aut libero suscipit voluptates quaerat sequi iusto, aliquid unde impedit deserunt itaque vel maxime labore mollitia exercitationem consequuntur doloremque aliquam? A, delectus dicta error blanditiis ducimus culpa!</p>
+					<p>Minus neque, obcaecati maxime exercitationem hic quidem vero adipisci, alias vel quas error. Reiciendis, impedit? Deleniti expedita distinctio natus architecto repellat aperiam eveniet sapiente fugit odio molestiae. Quibusdam, maxime quod?</p>
+					<p>Facilis accusamus voluptatem ut quam adipisci deleniti quo temporibus nihil doloremque cupiditate! Impedit totam, ipsa nesciunt tenetur vitae ex inventore enim ut illum non, mollitia nemo. Sint cupiditate dolores nobis?</p>
+					<p>Eum dolorum animi doloribus est dolores explicabo sequi doloremque sunt iure odit maiores tenetur, delectus repellendus necessitatibus, quo ad quam quidem cupiditate nulla! Illo laudantium libero officia animi tempora sit.</p>
+				</div>
+				<div class="pageCard">
+					<p>Molestias delectus amet sed magni officia esse dolor velit rerum exercitationem recusandae aperiam, quisquam debitis eos corporis nam iure facilis vitae numquam laboriosam unde eius! Ipsam quas quo reprehenderit laborum!</p>
+					<p>Corporis odio voluptates dolor repellat vero enim distinctio natus nobis suscipit libero placeat, voluptate non delectus asperiores tempore, ex ullam dolorem totam, eos dignissimos inventore. Doloribus aperiam veniam excepturi reiciendis.</p>
+					<p>Dolorem, nisi accusantium cum autem, aliquid consequatur laborum possimus repellat consequuntur error officia cumque sint molestias quidem voluptatum. Eaque rerum totam accusamus accusantium iure sapiente minima est quibusdam debitis placeat!</p>
+					<p>Cum quam corporis natus modi voluptate deleniti, ab repellendus repellat assumenda facilis corrupti aut sapiente, dolorem sint, nostrum animi commodi! Sunt repellat ipsa, perferendis mollitia fuga dolores in aperiam praesentium.</p>
+					<p>Atque consectetur assumenda fugit dicta porro placeat iusto asperiores alias explicabo id dignissimos officia architecto quasi ab doloremque veritatis ipsam maxime earum quaerat, beatae harum. Harum nam ex porro laboriosam.</p>
+				</div>
+				<div class="pageCard">
+					<p>Iusto perspiciatis iure placeat mollitia iste aliquam necessitatibus, minima, accusamus vitae vel recusandae delectus quibusdam commodi enim totam vero ad eaque quod voluptates magni ipsum, rerum reiciendis! Iusto, quae dolorem.</p>
+					<p>Rem pariatur veritatis impedit sapiente praesentium ullam quas repudiandae soluta nostrum alias cum aliquid unde aspernatur nemo velit debitis quidem neque quam officiis sunt, quos totam in magnam inventore. Sapiente.</p>
+					<p>Qui sed magnam corrupti doloremque id enim, voluptatum nemo non dignissimos ab, dolorem aliquid quae ea explicabo deserunt commodi vel amet ex iste? Earum perferendis quaerat enim? Architecto, praesentium quis?</p>
+					<p>Earum quidem ipsum repellat fugiat amet saepe debitis unde, maxime eveniet explicabo voluptatibus aliquid esse quam provident iste doloribus similique velit, necessitatibus veritatis nisi architecto nobis quos, nostrum cupiditate! Ullam.</p>
+					<p>Veniam dolorem natus quibusdam non tempora, veritatis explicabo quas quidem alias eius perferendis voluptatem. Nesciunt beatae vero, explicabo corporis laborum nisi perspiciatis modi facere veniam laboriosam magni pariatur distinctio illum.</p>
+				</div>
+				<div class="pageCard">
+					<p>Repellat culpa sunt unde a totam accusamus necessitatibus ducimus, error, minus temporibus non itaque eum tempore asperiores! Consectetur dolores nesciunt voluptatem, ut totam odit unde molestias mollitia fugit, a quisquam.</p>
+					<p>Beatae ut eos quia nobis velit praesentium expedita quae fugit, corrupti culpa aliquid explicabo veritatis? Architecto optio fugit fuga magnam ullam impedit nam? Totam cum eaque libero accusantium itaque similique.</p>
+					<p>Iste vero eligendi mollitia perferendis sit repellendus! Reprehenderit, ipsum quod. Illum, sint, et delectus repudiandae veritatis ullam placeat ab eos, cum tenetur quidem magni saepe dolorum quasi aut autem! Id.</p>
+					<p>Sequi aut quas quos fuga voluptatum culpa aperiam eligendi? Facere blanditiis iusto ex minima! Eligendi ipsum iure ut quo? Placeat cum in sint est laudantium, mollitia vitae fugiat perferendis eligendi.</p>
+					<p>Esse, nam provident animi deleniti ullam quo autem sequi dicta reprehenderit eligendi repudiandae veniam porro omnis enim vitae, nobis ut reiciendis laboriosam, fugit doloribus nihil veritatis. Commodi placeat perspiciatis voluptate.</p>
+				</div>
+				<div class="pageCard">Row 5</div>
+				<div class="pageCard">Row 6</div>
+				<div class="pageCard">Row 7</div>
+				<div class="pageCard">Row 8</div>
+				<div class="pageCard">Row 9</div>
+				<div class="pageCard">
+					<div class="addPageRow">Add Row</div>
+					<div class="remPageRow">Remove Row</div>
+				</div>
+				end
+			</div>
+			<div class="pageMatter">Matter 03
+				<div class="pageCard">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, neque? Commodi quia quidem reiciendis repellendus nihil repudiandae voluptatum doloremque cumque corporis, recusandae corrupti neque sapiente saepe. Aliquam magnam alias culpa.</p>
+					<p>Quo fuga vitae nostrum possimus quae nam laboriosam sapiente ab incidunt sunt laudantium tempora cum recusandae, dolorum tempore ducimus qui! Ratione eos nostrum ab modi deserunt repudiandae ipsam exercitationem iste.</p>
+					<p>Aspernatur quisquam quidem qui fuga voluptate sed tempora, assumenda perspiciatis harum illo nostrum alias, beatae magnam expedita consequatur nulla. Repudiandae necessitatibus cum modi assumenda commodi cumque aspernatur earum possimus! Error?</p>
+					<p>Provident non officiis quisquam perferendis, tenetur suscipit nesciunt repudiandae. Harum ipsum nesciunt nulla laborum temporibus, tempore repellat, illum ad hic sequi molestiae, consequatur pariatur modi cum! Molestiae corrupti consectetur atque!</p>
+					<p>Eius ducimus eveniet iusto a! Cupiditate, incidunt quas? Asperiores, dolore. Id doloremque similique corporis nostrum architecto ipsa nam, aut ducimus laboriosam soluta beatae repellat tempora veritatis laborum. Neque, mollitia harum!</p>
+				</div>
+				<div class="pageCard">
+					<p>Earum consequuntur animi eos. Ipsa iste quas consequuntur ipsam dolor veritatis ab, amet, facilis quam eaque excepturi aperiam repudiandae eveniet vero rerum mollitia? Vero molestiae neque labore aspernatur culpa incidunt.</p>
+					<p>Quas minus eaque, quod at optio a, nulla dolor ipsum rem eos saepe ullam sapiente voluptatibus perferendis voluptatem assumenda quibusdam alias. Itaque placeat velit ad rerum unde id consequatur debitis!</p>
+					<p>Adipisci magnam dolore velit vitae molestiae amet officia, perferendis eos mollitia quibusdam sit, a veniam magni sed delectus eligendi, saepe cupiditate quisquam commodi reiciendis error? Quaerat dicta nostrum ipsum laboriosam.</p>
+					<p>Atque quo eveniet excepturi voluptatum similique animi, officia dolorum cumque adipisci quibusdam laboriosam? Cumque, expedita consectetur necessitatibus, ducimus voluptas unde quidem perspiciatis dolorem suscipit, aliquid assumenda neque! Nesciunt, aut facilis.</p>
+					<p>Recusandae deserunt, vel mollitia voluptate, ipsam fugiat temporibus unde quisquam eaque ducimus earum aperiam. Omnis impedit nesciunt sequi perferendis, ipsum quos quis laudantium, odio alias iure reprehenderit aliquid nam ad.</p>
+				</div>
+				<div class="pageCard">
+					<p>Corporis dolorem vitae, itaque ex ipsam quibusdam eveniet voluptatem optio accusantium eum sit, rem voluptate voluptatibus saepe. Ratione in illo quisquam et magnam numquam, aut ea, sunt neque nesciunt fugit.</p>
+					<p>Eum placeat praesentium aperiam dolores hic alias voluptate veniam laboriosam labore laborum ex velit sed, unde, excepturi error voluptas incidunt? Id odio voluptatibus quo voluptates odit numquam fuga distinctio cupiditate?</p>
+					<p>Obcaecati, voluptatibus! Vel exercitationem alias similique maiores labore esse sunt et temporibus. Ipsa impedit cum temporibus expedita hic eveniet quos animi quia, quo deleniti iure sunt veritatis soluta sed iusto!</p>
+					<p>Sint similique nemo beatae maxime et magni sapiente, cum sit, possimus corrupti pariatur accusantium rerum sed aut ratione quo delectus doloribus repudiandae aliquid. Incidunt inventore nulla praesentium deserunt magni quo.</p>
+					<p>Temporibus tempora, qui iusto, error excepturi dolor maiores autem possimus ex modi amet vel dolore reprehenderit nam expedita exercitationem dolores eos vero, odio a atque ut? Corporis quod cum consequuntur?</p>
+				</div>
+				<div class="pageCard">
+					<p>Harum tempora a dolore enim nobis officiis vel, quaerat facilis cumque quod nesciunt fugit numquam sunt nemo maiores omnis repudiandae? Sint excepturi perspiciatis fugit blanditiis deleniti dolores minus deserunt similique.</p>
+					<p>In consequuntur natus, quaerat maiores nobis quod ea, illum est vero unde beatae laudantium distinctio? Inventore odio suscipit iusto. Veniam, exercitationem nesciunt repellat nisi earum magnam laboriosam impedit. Animi, alias?</p>
+					<p>Accusamus ad, recusandae veritatis, enim atque veniam vero, iusto obcaecati odit totam laboriosam eum dolorum quia nesciunt distinctio tempore sunt ipsam? Eius veritatis illo, exercitationem eaque non cupiditate corrupti temporibus?</p>
+					<p>Reiciendis temporibus nisi odio ea quaerat adipisci, aperiam voluptate similique assumenda! Distinctio qui odio libero rem voluptas rerum autem modi id vel, accusamus excepturi ut corrupti expedita ipsum, veniam sint?</p>
+					<p>Cupiditate soluta reiciendis illum, dolorum natus sapiente debitis saepe? Sed optio ipsum nostrum architecto facere adipisci dicta eum ipsa suscipit facilis culpa, necessitatibus consectetur asperiores eius minima sint in aliquid?</p>
+				</div>
+				<div class="pageCard">
+					<p>Consequatur sint sunt itaque enim, voluptates nihil illo maiores modi voluptatum architecto officiis vel esse, iusto facere voluptatibus delectus ipsa. Voluptas delectus, praesentium quo fugit unde exercitationem sapiente alias maxime.</p>
+					<p>Quo facilis at eaque doloremque accusantium odit, voluptates quas corrupti distinctio qui ex quod suscipit, excepturi quos veniam repellendus explicabo sit ullam perferendis exercitationem et. Fugit ullam aut possimus modi!</p>
+					<p>Adipisci ab inventore tenetur quisquam odit placeat deleniti impedit culpa debitis voluptatibus numquam nobis hic, fugit ut sequi veniam aperiam, exercitationem provident beatae tempore odio maiores necessitatibus voluptates atque? Ipsum.</p>
+					<p>Doloremque voluptatibus repellat temporibus dicta nostrum quaerat possimus dolore autem. Alias veritatis omnis quaerat voluptatibus nisi nam architecto iste sint ad cumque! Praesentium repellendus similique ut, repellat suscipit excepturi cumque?</p>
+					<p>Commodi porro reiciendis molestiae, tempore hic aspernatur, nisi quibusdam totam architecto facilis at tempora sit corporis adipisci dicta ex repellat veniam cum, amet soluta fugit officiis laboriosam iusto! Voluptatem, autem?</p>
+				</div>
+				<div class="pageCard">
+					<p>Minima, officiis, ut doloribus obcaecati perferendis doloremque nisi cum consectetur, dicta ipsum repudiandae error? Debitis molestias iste illo earum, perferendis nemo quibusdam sit, architecto voluptate iusto ipsum incidunt, sint voluptas.</p>
+					<p>Inventore qui recusandae eaque adipisci minus pariatur quia? Vel amet voluptatem ratione ipsam eius numquam et corporis error voluptas perferendis, nobis alias voluptates suscipit omnis illo, reprehenderit inventore culpa quisquam?</p>
+					<p>Vitae ad ipsa consequatur! Libero iure velit ratione possimus voluptatem consequatur sint inventore architecto doloribus officia minima aliquid impedit odio veritatis, ducimus optio. Molestiae atque, ipsa dolorum officia quis fugiat!</p>
+					<p>Temporibus quia voluptates omnis ab eaque voluptate aliquam, expedita eligendi repellendus voluptatibus, minus praesentium accusantium aspernatur mollitia eum esse vitae illum odio. Aliquid repudiandae illum repellendus eos quasi iusto molestiae.</p>
+					<p>Placeat autem modi aliquam vitae sunt nulla doloribus est, maiores aut illo mollitia odit minima. Voluptatibus nulla a sed libero vel dolorum velit explicabo repellat voluptatum! Quam placeat aut dolor!</p>
+				</div>
+				<div class="pageCard">
+					<p>Blanditiis necessitatibus quaerat quisquam doloribus rem qui, explicabo nobis numquam nesciunt temporibus. Quod, est porro! Ipsam mollitia aliquam exercitationem doloremque nisi dolores dicta, quas nobis, nesciunt quia harum eveniet illo.</p>
+					<p>Ut iure provident in a aperiam explicabo perspiciatis officiis eum! Labore ea iure aut quidem laudantium rem sit voluptas aliquam similique blanditiis. Deserunt aliquam voluptatibus non, quasi quod ipsam libero!</p>
+					<p>Eum perferendis voluptatum alias dolorum aut, optio, labore eos minus, quis blanditiis sed ad accusamus? Quo nostrum sapiente culpa rerum veniam, voluptatibus incidunt unde tempora repudiandae doloribus totam hic enim?</p>
+					<p>Rem hic dolores officia quo! Ratione, laborum vitae ipsam, iusto aspernatur, rem veniam esse tenetur quisquam deleniti quasi illo labore quia porro rerum quas ab eveniet praesentium! Autem, dolorum totam.</p>
+					<p>Repellendus ducimus iusto maiores eaque soluta ipsa. Aliquid eaque temporibus dolores obcaecati, quod facilis impedit voluptas repellat iusto hic inventore consequatur iste quibusdam aut molestiae maiores deleniti? Fugiat, officia a?</p>
+				</div>
+				<div class="pageCard">
+					<p>Praesentium et, odio, similique, officia dignissimos veritatis ipsa tempora eligendi sed cum mollitia est maxime architecto? Modi aliquam natus repellendus qui molestiae saepe nam odit, sapiente corrupti quibusdam nemo nesciunt!</p>
+					<p>Non nihil vitae necessitatibus repellat sed ex corporis quaerat rem expedita amet itaque nulla quam eaque asperiores voluptate vero, atque assumenda, quas velit nesciunt sapiente, laborum facere quo? Officiis, adipisci!</p>
+					<p>Ratione pariatur fuga, est molestiae error facere! Beatae maiores aliquam obcaecati illum repudiandae vero dicta aut mollitia dolore fuga necessitatibus, voluptates deserunt tenetur esse quae? Porro laboriosam accusamus fugit ipsum.</p>
+					<p>Officiis nostrum error, tenetur delectus nisi corrupti, distinctio suscipit dicta laborum et fuga dolore corporis asperiores quae doloribus neque harum quisquam, optio dolorem odit praesentium doloremque! Amet maxime tempore accusamus!</p>
+					<p>Ducimus eaque nobis incidunt veniam cumque rerum voluptates magni architecto tempore nulla facere autem hic quibusdam numquam, voluptatem necessitatibus fuga veritatis accusantium. Dicta vel placeat ducimus excepturi voluptatum dignissimos aperiam.</p>
+				</div>
+				<div class="pageCard">
+					<p>Odit necessitatibus natus rerum, voluptate iste a dolores ab voluptates. Fugit, reprehenderit molestiae ea nisi odit, sint quidem totam reiciendis atque minima officiis. Consequatur iusto consectetur quidem suscipit assumenda quis.</p>
+					<p>Nam quidem dignissimos velit harum consequatur, quis facilis, in qui et ullam nisi rerum? Iusto sapiente voluptatem aspernatur optio possimus quam quia. Magnam cumque ab odit. Tempora, illum architecto! Praesentium?</p>
+					<p>Sequi est odit reprehenderit tempora quidem fugit ex qui vitae ipsam modi reiciendis enim deserunt unde alias similique praesentium doloribus, dicta facilis eos dolor aliquam nobis nam molestias sint! Dolore.</p>
+					<p>Odio dolor quae aliquid dolorum accusamus atque corrupti expedita enim fugit deleniti sed optio nesciunt qui quia, cum dolore molestiae ab voluptas. Eos laudantium deserunt repudiandae aspernatur sint, reiciendis aliquid.</p>
+					<p>Ea, corrupti. Perferendis dolore dolores ipsam, porro quae doloremque ullam. Voluptatem accusamus architecto pariatur veniam provident ullam deleniti! Adipisci necessitatibus temporibus totam voluptate mollitia nam ipsum veritatis maiores voluptatibus consequuntur.</p>
+				</div>
+				<div class="pageCard">
+					<p>Perferendis dignissimos facere aut rerum blanditiis optio! Reprehenderit maiores eveniet temporibus numquam cumque, earum, quisquam expedita consequatur incidunt velit soluta deleniti impedit natus eius nam hic, nulla distinctio? Sapiente, fuga.</p>
+					<p>Dicta distinctio soluta laboriosam quidem veniam ullam natus cumque, aperiam amet qui voluptatem temporibus unde, voluptatum voluptas quisquam voluptatibus nihil molestias doloribus ad inventore repellat magni quam? Similique, officia quibusdam?</p>
+					<p>Voluptatem magnam corporis illum, saepe obcaecati dolorem consequatur quisquam voluptatibus pariatur, optio eos amet exercitationem laborum quas magni alias est? Nihil velit praesentium ad nobis sit dolorem, libero porro sunt.</p>
+					<p>Id, inventore. Itaque dignissimos laudantium aperiam suscipit, minus architecto necessitatibus! Soluta veniam temporibus corrupti aspernatur ratione veritatis quam. Et hic a eum omnis repellendus eveniet sed dolorem consequatur libero perspiciatis?</p>
+					<p>Quia similique provident obcaecati dolor vitae, deleniti iste quo animi mollitia soluta, illum adipisci nisi porro voluptatem, molestiae eaque tempore. Cum veritatis eaque accusantium cupiditate dignissimos quasi, vel velit ipsam.</p>
+				</div>
+				<div class="pageCard">
+					<p>Temporibus commodi ipsam nihil inventore? Tempora ipsa eligendi repellat, temporibus nesciunt accusantium odit molestias quod magni aliquam iusto sed autem! Atque quos possimus assumenda beatae, eaque sit dolore accusamus voluptates?</p>
+					<p>Dolorem recusandae ea at accusamus vero in animi tenetur, officiis, praesentium ratione dolor omnis, consequuntur voluptatem impedit? Quam natus, eveniet et qui saepe aperiam vel exercitationem ullam hic, error in!</p>
+					<p>Dolore explicabo dicta, adipisci tempore temporibus repellendus ipsa ex tenetur repudiandae fugiat laborum. Reiciendis a sit iusto odit maiores ipsam placeat? Numquam doloremque, vitae iure quam dolores laudantium accusantium modi!</p>
+					<p>Similique atque autem laborum. Sint veniam beatae distinctio voluptatem sapiente cum earum quos dolore aliquid maiores deserunt dicta corrupti iusto velit explicabo consequuntur repudiandae hic, natus soluta praesentium accusamus rerum?</p>
+					<p>Nobis earum vel voluptas exercitationem, facere totam iure, officia modi hic excepturi, optio soluta cumque! Fugit numquam nemo expedita ratione deleniti earum quibusdam quod autem, voluptatibus quas harum iusto esse?</p>
+				</div>
+				<div class="pageCard">
+					<p>Eos, itaque ex cum expedita veniam illo neque sint, eius aut animi est. Cum, ratione officia minima iste maiores ad illo sit dolores expedita consequatur quasi voluptatum architecto aperiam obcaecati!</p>
+					<p>Praesentium in soluta asperiores sequi necessitatibus, voluptas architecto nihil vel eos debitis expedita ratione exercitationem non reiciendis id, voluptatum nisi odit atque saepe laboriosam aliquid. Impedit cumque officia molestiae at!</p>
+					<p>Accusamus voluptatem excepturi voluptates asperiores repellat, amet sequi voluptatibus. Cum molestiae, animi veniam et voluptatibus necessitatibus aut fuga optio praesentium consequuntur laboriosam magni assumenda! Nemo libero dolor eveniet officiis excepturi?</p>
+					<p>Dolores cumque qui sunt iste neque incidunt voluptatibus est officia magnam magni sed soluta eligendi quisquam laborum minus voluptate suscipit earum sint, doloremque laboriosam nisi sit illum ipsa totam! Nobis?</p>
+					<p>Accusamus eveniet, libero cum minus aspernatur id exercitationem ea ut! Laborum sunt officia eum vel accusantium commodi maxime, asperiores doloribus veritatis est id ad quod laboriosam, neque architecto velit autem?</p>
+				</div>
+				<div class="pageCard">
+					<p>Ab est commodi a temporibus nulla ipsa quo distinctio iure consequatur? Corrupti vel eaque in nobis alias quaerat voluptas, eveniet molestias voluptatum veritatis a harum! Veritatis eius culpa neque at.</p>
+					<p>Consequuntur alias recusandae ex sapiente officia harum laborum, voluptatem fugiat maxime aliquam autem. Recusandae eius temporibus cupiditate quaerat quidem cumque iusto maxime consequatur vero, minus laboriosam culpa soluta pariatur non?</p>
+					<p>Iure odit nam unde minima reprehenderit, libero alias tenetur veritatis incidunt sit, amet, molestias repudiandae deleniti doloribus eius mollitia cupiditate? Sint nobis tempora facere vitae veritatis, accusantium ipsa. Beatae, harum?</p>
+					<p>Dicta aliquid adipisci impedit voluptates? Veritatis illum, qui ullam, facere voluptatem nobis ea ut similique quibusdam delectus asperiores exercitationem eveniet. Officia excepturi facilis quaerat libero sed quisquam ipsa odit rerum?</p>
+					<p>Dolorem vel fugiat molestias necessitatibus sunt deserunt? Nam dolor cum, doloribus optio eaque fuga atque deleniti tenetur hic numquam nihil? Pariatur nobis hic molestiae vel tenetur ut impedit sit eaque?</p>
+				</div>
+				<div class="pageCard">
+					<p>Distinctio doloremque cumque iure corrupti eveniet id sequi. Neque laborum a distinctio fuga impedit. Quod pariatur nesciunt architecto non nobis vero voluptate provident dignissimos voluptates. Voluptatibus molestias fuga officia ut?</p>
+					<p>Iusto, omnis voluptatibus. Consequatur eveniet quos veritatis commodi soluta. Nemo neque sunt magni delectus, quasi adipisci doloremque dolor quia a voluptatum quaerat molestiae repudiandae, quas temporibus deleniti dignissimos error eligendi?</p>
+					<p>Neque explicabo, sed laudantium nostrum odio quasi cum voluptatum, tempore animi cupiditate libero corrupti. Alias necessitatibus totam optio molestiae illum non sint dolor ex dicta dolores labore, aut porro assumenda.</p>
+					<p>In eum repellendus, id est doloremque eius nam distinctio pariatur minus quibusdam exercitationem, ratione corporis laboriosam. Aspernatur rerum commodi consectetur quibusdam beatae quos. Laudantium, iure aliquam cumque quo voluptas hic!</p>
+					<p>Cupiditate consequatur, dolores temporibus minus culpa nesciunt aliquid eius esse earum eveniet delectus quos veniam corrupti id architecto quis ex eum dolorum, error quibusdam possimus molestiae dolorem explicabo minima? Culpa.</p>
+				</div>
+				<div class="pageCard">
+					<p>Nulla obcaecati quibusdam error eveniet debitis itaque voluptatibus, culpa nostrum, voluptates inventore suscipit beatae doloribus odit sed, dolorem laborum mollitia dolores similique maxime vitae magni reprehenderit porro. Ipsum, facere asperiores.</p>
+					<p>Laudantium molestiae tempore modi voluptatem animi laboriosam at. Distinctio doloribus enim maxime sequi. Architecto velit corrupti laborum alias accusamus, culpa deleniti voluptas doloribus commodi quaerat distinctio id nihil quidem eius.</p>
+					<p>Magnam dicta quaerat suscipit animi ullam iure reprehenderit recusandae molestiae sequi, dolores sed porro sint vitae fugiat? Ducimus nisi numquam quas ipsam pariatur accusantium esse eligendi? Quidem expedita libero accusamus.</p>
+					<p>Eius, ab reiciendis quae quas dolore quisquam temporibus recusandae fugit, ea illum sunt! Odio, ipsum. Neque, tempore! Voluptas voluptatibus sed accusantium nobis. Eaque, fuga impedit suscipit maxime voluptates aperiam ducimus.</p>
+					<p>Quidem laudantium molestias, minima hic quisquam eius amet, dignissimos minus magni sint voluptates ipsam? Iusto dolor in est maiores sint ut eligendi! Nesciunt magnam voluptatem nobis, vero quibusdam rem sint!</p>
+				</div>
+			</div>
+			<div class="pageMatter">Matter 04</div>
+			<div class="pageMatter">Matter 05</div>
+			<div class="pageMatter">Matter 06</div>
+			<div class="pageMatter">Matter 07</div>
+			<div class="pageMatter">Matter 08</div>
+			<div class="pageMatter">Matter 09</div>
+			<div class="pageMatter">Matter 10</div>
+		</div>
+	</div>
+
+</div>
+
+
+	<div id="BG"></div>
+	<div id="navRC" class="navRC noWidth">
+		<div id="navRM" class="navRM navBot">
+			<div id="navRH" class="navRH">
+				<div class="navBtn nbGray" id="menuBBtn">M</div>
+				<div class="navBtn nbGray" id="navRBtn">R</div>
+				<div class="navBtn nbGray" id="navTBtn">T</div>
+				<div class="navBtn nbGray" id="navLBtn">L</div>
+				<div class="navBtn nbGray" id="menuSBtn">S</div>
+			</div>
+			<div id="navRW">
+				<div class="navRH navH"></div>
+				<div class="navRH navH"></div>
+				<div id="navRB">
+					<nav id="menuin">
+						<div id="panel-menuin">
+						<ul>
+							<li><a href="#/">Home</a></li>
+							<li>
+								<span>About us</span>
+								<ul>
+									<li><a href="#/">History</a></li>
+									<li>
+										<span>The team</span>
+										<ul>
+											<li><a href="#/">Management</a></li>
+											<li><a href="#/">Sales</a></li>
+											<li><a href="#/">Development</a></li>
+										</ul>
+									</li>
+									<li><a href="#/">Our address</a></li>
+								</ul>
+							</li>
+							<li><a href="#/">Contact</a></li>
+
+							<li class="Divider">Other demos</li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+							<li><a href="default.html">Default demo</a></li>
+							<li><a href="onepage.html">One page demo</a></li>
+						</ul>
+					</div>
+
+					<div id="panel-accountin">
+						<ul>
+							<li><a href="#/">My profile</a></li>
+							<li><a href="#/">Privacy settings</a></li>
+							<li><a href="#/">Activity</a></li>
+							<li><a href="#/">Sign out</a></li>
+						</ul>
+					</div>
+
+					<div id="panel-cartin">
+						<p style="text-align: center; padding-top: 30px;">
+							Your shoppingcart is empty.<br />
+							<a href="#/">Continue shopping.</a>
+						</p>
+					</div>
+				</nav>
+				</div>
+		</div>
+		</div>
+	</div>
+	<script src="de/j/jq.js"></script>
+	<script src="de/j/db.js"></script>
+	<script src="de/j/mmpf.js"></script>
+	<script src="de/j/mm.js"></script>
+	<script src="de/j/pp.js"></script>
+	<script src="de/j/bs.js"></script>
+	<script src="de/j/cb.js"></script>
+	<script src="de/j/uk.js"></script>
+	<script src="de/j/uki.js"></script>
+	<script src="de/j/flk.js"></script>
+	<script src="de/j/flkhsh.js"></script>
+	<!--script src="de/j/clovefunc.js"></script-->
+	<script>
+		new Mmenu("#menuin", {
+			offCanvas: false,
+			extensions: ['theme-dark',],
+			setSelected: true,
+			counters: true,
+			searchfield: {
+				placeholder: 'Search menu items...',
+			},
+			navbars: [{
+				position: 'bottom',
+				content: ['searchfield'],
+			}, ],
+		}, {
+			searchfield: {
+				clear: true,
+			},
+			navbars: {
+				breadcrumbs: {
+					removeFirst: true,
+				},
+			},
+		});
+
+		var draggie = new Draggabilly( '.navRM', {
+			axis: 'y',
+			handle: '.navRH',
+			containment: '.navRC',
+		});
+
+		var openf = 0, scrH, bul, mbl, mul, tbl;
+		function calNavLimits(){
+			scrH = $(window).innerHeight();
+			tbl = Math.floor(scrH * 0.15);
+			mul = Math.floor(scrH * 0.27);
+			mbl = Math.floor(scrH * 0.57);
+			bul = Math.floor(scrH * 0.77);
+		}	
+		calNavLimits();
+
+		function setNavTop(){
+		$("html").addClass("noscroll");
+		$("#navRC").removeClass("noWidth");
+		$("#navRM").removeClass("navMid navBot");
+		$("#navRM").css("top","");
+		$("#navRM").addClass("navTop");
+		openf = 1;
+		$("#navRC").addClass("fullWidth");
+	}
+	function setNavMid(){
+		$("html").addClass("noscroll");
+		$("#navRM").removeClass("navTop navBot");
+		$("#navRM").css("top","");
+		$("#navRM").addClass("navMid");
+		openf = 2;
+	}
+	function setNavBot(){
+		$("html").removeClass("noscroll");
+		$("#navRC").addClass("noWidth");
+		$("#navRM").removeClass("navMid navTop");
+		$("#navRM").css("top","");
+		$("#navRM").addClass("navBot");
+		openf = 0;
+		$("#navRC").removeClass("fullWidth");
+	}
+
+	$(window).resize(function(){
+		calNavLimits();
+		$("#navRM").css("top","");
+		if(openf == 0){
+			setNavBot();
+		}
+		else if(openf == 1){
+			setNavTop();
+		}
+		else if(openf == 2){
+			setNavMid();
+		}
+	});
+
+	draggie.on('dragEnd',function(event, position){
+		var dragpos = draggie.position.y;
+		if(openf == 0){
+			if(dragpos < bul){
+				setNavTop();
+			}
+			else if(dragpos >= bul){
+				setNavBot();
+			}
+		}
+		else if(openf == 1){
+			if(dragpos < tbl){
+				setNavTop();
+			}
+			else if(dragpos >= tbl){
+				setNavMid();
+			}
+		}
+		else if(openf == 2){
+			if(dragpos < mul){
+				setNavTop();
+			}
+			else if(dragpos >= mul && dragpos <= mbl){
+				setNavMid();
+			}
+			else if(dragpos > mbl){
+				setNavBot();
+			}
+		}
+	});
+
+	function topClr(){
+		$(".navBtn").removeClass("nbGray nbAqua");
+		$(".navBtn").addClass("nbGreen");
+	}
+	function midClr(){
+		$(".navBtn").removeClass("nbGray nbGreen");
+		$(".navBtn").addClass("nbAqua");
+	}
+	function botClr(){
+		$(".navBtn").removeClass("nbGreen nbAqua");
+		$(".navBtn").addClass("nbGray");
+	}
+
+	draggie.on('dragMove', function(event,pointer,moveVector) {
+		var dragpos = draggie.position.y;
+		if(openf == 0){
+			if(dragpos < bul){
+				topClr();
+			}
+			else if(dragpos >= bul){
+				botClr();
+			}
+		}
+		else if(openf == 1){
+			if(dragpos < tbl){
+				topClr();
+			}
+			else if(dragpos >= tbl){
+				midClr();
+			}
+		}
+		else if(openf == 2){
+			if(dragpos < mul){
+				topClr();
+			}
+			else if(dragpos >= mul && dragpos <= mbl){
+				midClr();
+			}
+			else if(dragpos > mbl){
+				botClr();
+			}
+		}
+	});
+
+	$pageMatterFlick = new Flickity('.pageMatterFlick', {
+		"contain": true,
+		"pageDots": false,
+		"prevNextButtons": false,
+		"adaptiveHeight": true,
+		"cellAlign": "left"
+	});
+
+	var emobj = {
+		1: {
+			1: "(︶︵︶ )",
+			2: "(︶⸏︶  )",
+			3: "(︶‿︶  )",
+		},
+		2: {
+			1: "(⌒︵⌒ )",
+			2: "(⌒⸏⌒  )",
+			3: "(⌒‿⌒  )",
+		},
+		3: {
+			1: "(˘꒢˘ )",
+			2: "(˘_˘  )",
+			3: "(˘◡˘  )",
+		},
+		4: {
+			1: "(ᵔᵕᵔ  )",
+			2: "(ᵔ_ᵔ  )",
+			3: "(ᵔ᎑ᵔ  )",
+		},
+		5: {
+			1: "(꒡꒢꒡  )",
+			2: "(꒡⸏꒡  )",
+			3: "(꒡‿꒡  )",
+		},
+		6: {
+			1: "(◕︵◕ )",
+			2: "(◕⸏◕  )",
+			3: "(◕‿◕  )",
+		},
+		7: {
+			1: "(o_O  )",
+			2: "(⊙_⊙  )",
+			3: "(⊙‿⊙  )",
+		},
+		8: {
+			1: "(¬︵¬ )",
+			2: "(¬⸏¬  )",
+			3: "(¬‿¬  )",
+		},
+		9: {
+			1: "(☒︵☒  )",
+			2: "(☐⸏☐  )",
+			3: "(☑‿☑  )",
+		},
+		10: {
+			1: "(�︵� )",
+			2: "(✦⸏✦  )",
+			3: "(✦‿✦  )",
+		},
+		11: {
+			1: "(  𑱢 ﹏ 𑱢)",
+			2: "(  𑱢 ︵ 𑱢)",
+			3: "(  𑱢 ‿ 𑱢)",
+			4: "(  𑱢 ⸏ 𑱢)",
+		},
+		12: {
+			1: "(𒊹︵𒊹 )",
+			2: "(𒊹⸏𒊹  )",
+			3: "(𒊹‿𒊹  )",
+		},
+		13: {
+			1: "(𖣘︵𖣘 )",
+			2: "(𖣘⸏𖣘  )",
+			3: "(𖣘‿𖣘  )",
+		},
+		14: {
+			1: "(𖣐︵𖣐 )",
+			2: "(𖣐⸏𖣐  )",
+			3: "(𖣐‿𖣐  )",
+		},
+		15: {
+			1: "(@︵@ )",
+			2: "(@⸏@  )",
+			3: "(@‿@  )",
+		},
+		16: {
+			1: "(᪤︵᪤ )",
+			2: "(᪤⸏᪤  )",
+			3: "(᪤‿᪤  )",
+		},
+		17: {
+			1: "(ꉺ︵ꉺ )",
+			2: "(ꉻ⸏ꉻ  )",
+			3: "(ꄱ‿ꄱ  )",
+		},
+		18: {
+			1: "(Ő︵Ő )",
+			2: "(Ő⸏Ő  )",
+			3: "(Ő‿Ő  )",
+		},
+		19: {
+			1: "(◟_◞  )",
+			2: "(◜⸏◝  )",
+			3: "(◜‿◝  )",
+		},
+		20: {
+			1: "(⩌︵⩌ )",
+			2: "(⩌⸏⩌  )",
+			3: "(⩐‿⩐  )",
+		},
+		21: {
+			1: "(⬒︵⬒ )",
+			2: "(⬒⸏⬒  )",
+			3: "(⬒‿⬒  )",
+		},
+		22: {
+			1: "(⬓︵⬓ )",
+			2: "(⬓⸏⬓  )",
+			3: "(⬓‿⬓  )",
+		},
+		23: {
+			1: "(᰽︵ᰞ )",
+			2: "(o⸏ᰞ  )",
+			3: "(o‿O )",
+		},
+		24: {
+			1: "(㇣︵㇣ )",
+			2: "(㇣⸏㇣  )",
+			3: "(ꄲ‿ꄲ  )",
+		},
+		25: {
+			1: "(ᗌ︵ᗏ  )",
+			2: "(ᗌ⸏ᗏ  )",
+			3: "(ᗌ‿ᗏ  )",
+		},
+		26: {
+			1: "(>︵< )",
+			2: "(>⸏<  )",
+			3: "(>‿<  )",
+		},
+		27: {
+			1: "(*︵* )",
+			2: "(*⸏*  )",
+			3: "(*‿*  )",
+		},
+		28: {
+			1: "(~︵~ )",
+			2: "(~⸏~  )",
+			3: "(~‿~ )",
+		},
+		29: {
+			1: "(#︵# )",
+			2: "(#⸏#  )",
+			3: "(#‿#  )",
+		},
+		30: {
+			1: "(^︵^ )",
+			2: "(^⸏^  )",
+			3: "(^‿^  )",
+		},
+		31: {
+			1: "(×︵× )",
+			2: "(×⸏×  )",
+			3: "(×‿×  )",
+		},
+		32: {
+			1: "(°︵° )",
+			2: "(°⸏°  )",
+			3: "(°‿°  )",
+		},
+		33: {
+			1: "(`︵` )",
+			2: "(`⸏`  )",
+			3: "(`‿`  )",
+		},
+		34: {
+			1: "(﹌︵﹌  )",
+			2: "(﹋⸏﹋  )",
+			3: "(︶‿︶  )",
+		},
+		35: {
+			1: "(・︵・ )",
+			2: "(・⸏・  )",
+			3: "(・‿・  )",
+		},
+		36: {
+			1: "(𐄂︵𐄂 )",
+			2: "(𐄂⸏𐄂  )",
+			3: "(𐄂‿𐄂  )",
+		},
+		37: {
+			1: "(ꤥ︵ꤥ  )",
+			2: "(ꤥ⸏ꤥ  )",
+			3: "(ꤥ‿ꤥ  )",
+		},
+		38: {
+			1: "(⦸︵⦸ )",
+			2: "(⦸⸏⦸  )",
+			3: "(⦸‿⦸  )",
+		},
+		39: {
+			1: "(⦷︵⦷ )",
+			2: "(⦷⸏⦷  )",
+			3: "(⦷‿⦷  )",
+		},
+		40: {
+			1: "(𐅁𐅀︵𐅁𐅀 )",
+			2: "(𐅁𐅀⸏𐅁𐅀  )",
+			3: "(𐅁𐅀‿𐅁𐅀  )",
+		},
+		41: {
+			1: "(⬦︵⬨ )",
+			2: "(⬥⸏⬧  )",
+			3: "(⬥‿⬧  )",
+		},
+		42: {
+			1: "(⏑︵⏑ )",
+			2: "(⏑⸏⏑  )",
+			3: "(⏑‿⏑  )",
+		},
+		43: {
+			1: "(ᐞ︵ᐞ )",
+			2: "(ᐞ⸏ᐞ  )",
+			3: "(ᐞ‿ᐞ  )",
+		},
+		44: {
+			1: "(ᰟ︵ᰟ )",
+			2: "(ᰟ⸏ᰟ  )",
+			3: "(ᰟ‿ᰟ  )",
+		}
+	}
+
+	let navMsgObj = {
+		1:{
+			brand: "GMail",
+			linkloc: "https://www.google.com/gmail/"
+		},
+		2:{
+			brand: "Wikipedia",
+			linkloc: "https://www.wikipedia.org/"
+		},
+		3:{
+			brand: "Flickity",
+			linkloc: "https://flickity.metafizzy.co/"
+		},
+		4:{
+			brand: "Draggabilly",
+			linkloc: "https://draggabilly.desandro.com/"
+		},
+		5:{
+			brand: "jQuery",
+			linkloc: "https://jquery.com/"
+		},
+		6:{
+			brand: "Google Fonts",
+			linkloc: "https://fonts.google.com/"
+		},
+		7:{
+			brand: "Mozilla",
+			linkloc: "https://www.mozilla.org/"
+		},
+		8:{
+			brand: "W3 CSS",
+			linkloc: "https://www.w3schools.com/w3css/"
+		},
+		9:{
+			brand: "Linux Mint",
+			linkloc: "https://www.linuxmint.com/"
+		},
+		10:{
+			brand: "UI Kit",
+			linkloc: "https://getuikit.com/"
+		},
+		11:{
+			brand: "DuckDuckGo",
+			linkloc: "https://duckduckgo.com/"
+		},
+		12:{
+			brand: "G Suite",
+			linkloc: "https://gsuite.google.com/"
+		},
+		13:{
+			brand: "G Drive",
+			linkloc: "https://www.google.com/drive/"
+		},
+		14:{
+			brand: "G Suite",
+			linkloc: "https://gsuite.google.com/essentials/"
+		},
+		15:{
+			brand: "Libre Office",
+			linkloc: "https://www.libreoffice.org/"
+		},
+		16:{
+			brand: "GNU",
+			linkloc: "https://www.gnu.org/#mission-statement"
+		}
+	}
+
+	function random1to(n){
+		return(Math.floor(Math.random() * n) + 1);
+	}
+
+	function putNavMsg(){
+		var navMsgObjLen = Object.keys(navMsgObj).length;
+		var msgnum = 1;
+		msgnum = random1to(navMsgObjLen)
+		$("#navFooterMsg2").html( "Special Tanks to, &nbsp; <a href='" + 
+		navMsgObj[msgnum].linkloc + "'>" + 
+		navMsgObj[msgnum].brand + "</a>" );
+	}
+	putNavMsg();
+
+	var slideHistory = [];
+	var slideLen = slideHistory.length;
+
+	$(".navInterPill").click(function(){
+		if( $(this).attr("href")[0] == "#" ){
+			console.log("# detected");
+			slideHistory.push( $(this).parent().attr('id') );
+			slideLen = slideHistory.length;
+			console.log(slideHistory);
+			$("#navPageIndi").attr( "href", "#" + slideHistory[slideLen - 1] );
+			$("#navPageIndi").html( "<< Back to " + slideHistory[slideLen - 1] );
+		}
+	});
+	$("#navPageIndi").click(function(){
+		slideHistory.pop();
+		slideLen = slideHistory.length;
+		console.log(slideHistory);
+		if(slideLen == 0){
+			$("#navPageIndi").attr( "href", "#NavHome");
+			$("#navPageIndi").html( "NavHome reached" );
+			console.log(slideHistory);
+		}
+		else{
+			$("#navPageIndi").attr( "href", "#" + slideHistory[slideLen - 1] );
+			$("#navPageIndi").html( "<< Back to " + slideHistory[slideLen - 1] );
+			console.log(slideHistory);
+		}
+	});
+
+	function putEmo(){
+		var emobjLen = Object.keys(emobj).length;
+		$("#pageSlideCountIndi").html( emobj[random1to(emobjLen)][3] );
+	}
+	putEmo();
+
+	$(".pageMatter").append("<div class='pageRow pageMatEnd'>*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*&nbsp;*<br/><< &nbsp; Swipe to change sections. &nbsp; >></div>");
+
+//	$("#pageSlideCountIndi").html( emobj[23][3] );
+
+
+	</script>
+</body>
+</html>
